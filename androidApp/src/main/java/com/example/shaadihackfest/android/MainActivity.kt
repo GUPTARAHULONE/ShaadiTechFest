@@ -17,6 +17,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.shaadihackfest.Greeting
+import com.example.shaadihackfest.InfoApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -35,14 +36,16 @@ class MainActivity : ComponentActivity() {
                     val text1 = remember { mutableStateOf("Loading") }
 
                     val text = MutableStateFlow<String>("abc")
+
                     LaunchedEffect(true) {
                         scope.launch(Dispatchers.IO) {
                             text1.value = try {
-                                Greeting().getApiCall()
+                               // Greeting().getAllLaunches()[0].missionName
+                                InfoApi().getApiCall2("ISFP")
                             } catch (e: Exception) {
                                 e.localizedMessage ?: "error"
                             }
-//                            Log.d("text", text.value)
+                            Log.d("text123", text1.value)
                         }
                     }
                     GreetingView(text1.value)
