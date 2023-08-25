@@ -16,7 +16,7 @@ class PersonalityTestViewModel {
 
     val getState = _state.toCommonStateFlow()
     private val _quesState = MutableStateFlow(PersonalityQuestionAnswer())
-    val getQuesState = _state.toCommonStateFlow()
+    val getQuesState = _quesState.toCommonStateFlow()
 
     init {
         callApi()
@@ -51,7 +51,7 @@ class PersonalityTestViewModel {
 //        )
 //    }
 
-    private var dummyDataList = listOf<PersonalityQuestionAnswer>(
+    private var dummyDataList = listOf(
         PersonalityQuestionAnswer(
             questionId = 0,
             questionTitle = "ARE YOU USUALLY",
@@ -413,4 +413,22 @@ class PersonalityTestViewModel {
 
         return answerString
     }
+
+//    private fun getMappedData(): Map<String, List<String>> {
+//        val map = mutableMapOf<String, List<String>>()
+//
+//        map["ESTJ"] = listOf("ESFJ", "ISFJ", "ISTJ", "INFP", "ISTP", "INTP", "ENTJ", "ENFP", "ESFP")
+//        map["ISTJ"] = listOf(ESTJ, ESFJ, ISFJ, INFP, ENFP,INTJ, ISTP, ISTJ)
+//        map["ESFJ"] = listOf(ISTJ, ISFJ, ESTJ, ENTP, INTP,ENFJ, INFJ, ISTP)
+//        map["ISFJ"] = listOf(ESTJ, ISTJ, ESFJ, ENTP,INFJ, ENFJ, ESTP, ISTP, INTP)
+//        map["ESFP"] = listOf(ISFP, ISTP, INTJ,ESTJ, ESTP, INFJ, ENFJ, ESFJ, ISFJ, ENTP, ENFP, INFP)
+//        map["ISFP"] = listOf(ESFP, ESTP, ISTP, INTJ,INTP, ENTJ, ISTJ, INFJ, INFP)
+//        map["ESTP"] = listOf(ISFP, ISTP, INFJ, ENFJ,ISFJ, ESFJ, ENTP, INFP, ESFP)
+//        map["ISTP"] = listOf(ESTP, ISFP, INFJ, ENFJ, INTJ, INTP,ESFP, ESTJ, ISTJ, ESFJ, ISFJ, ENFP, INFP, ENTP)
+//        map["ENTJ"] = listOf(ENTP, INTP, ESTJ, INFP, ENFJ,ENFP, ISFP, ESFJ, ISTP, INTJ)
+//        map["INTJ"] = listOf(ENFP, INFP, ESFP, ISFP, ISTP,ISTJ, INTP, ENFJ, ENTP, ENTJ, INFJ, INTJ)
+//        map["ENFJ"] = listOf(INFJ, INTJ, INFP, ENTJ, ESTP, ISTP,INTP, ENTP, ENFJ, ESFP, ESFJ, ISFJ, ENFP)
+//        map["INFJ"] = listOf(INFP, INTP, ENFJ, ISTP, ESTP, ENTP, ENFP,INTJ, ESFJ, ISFJ, INFJ)
+//
+//    }
 }
