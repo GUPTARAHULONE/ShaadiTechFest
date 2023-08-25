@@ -5,9 +5,10 @@ struct ContentView: View {
 	let greet = Greeting().greet()
 
 	var body: some View {
-        //DRPage()
+        DRPage()
         
-        MyMatches(iPersonalityTextViewModel: IPersonalityTestViewModel())
+        //PersonalityTestDoneView(iPersonalityTextViewModel: IPersonalityTestViewModel())
+        //MyMatches(iPersonalityTextViewModel: IPersonalityTestViewModel())
 	}
 }
 

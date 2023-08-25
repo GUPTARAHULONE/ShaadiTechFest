@@ -27,22 +27,20 @@ struct PersonalityTestView: View {
                 .frame(width: 172, height: 172)
                 .padding(.top, 50)
             
-            // Heading/H4/Bold
-            Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.questionTitle.capitalized)
-                .font(.system(size: 24, weight: .bold, design: .default))
-//              .font(
-//                Font.custom("Roboto", size: 24)
-//                  .weight(.bold)
-//              )
-              .foregroundColor(Color(red: 0.25, green: 0.25, blue: 0.3))
-              .padding(.top, 50)
-              .padding(.bottom, 20)
-              .padding(.leading, 20)
-              .padding(.trailing, 20)
-              //.frame(width: 302, alignment: .topLeading)
+            HStack {
+                Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.questionTitle.capitalized)
+                    .multilineTextAlignment(.leading)
+                    .font(.system(size: 24, weight: .bold, design: .default))
+                    .foregroundColor(Color(red: 0.25, green: 0.25, blue: 0.3))
+                    .padding(.top, 50)
+                    .padding(.bottom, 20)
+                    .padding(.leading, 20)
+                    .padding(.trailing, 20)
+                
+                Spacer()
+            }
             
             Button {
-                //iPersonalityTextViewModel.optionSelected(id: 0)
                 selectedOption = .zero
             } label: {
                 HStack {
@@ -51,6 +49,7 @@ struct PersonalityTestView: View {
                         Font.custom("Roboto", size: 16)
                           .weight(.medium)
                       )
+                      .multilineTextAlignment(.leading)
                       .foregroundColor(Color(red: 0.32, green: 0.31, blue: 0.36))
                     
                     Spacer()
@@ -75,12 +74,11 @@ struct PersonalityTestView: View {
             
             
             Button {
-                //iPersonalityTextViewModel.optionSelected(id: 1)
                 selectedOption = .first
             } label: {
                 HStack {
                     Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.options[1].title.capitalized)
-                    //Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.options[1].title)
+                        .multilineTextAlignment(.leading)
                         .font(
                             Font.custom("Roboto", size: 16)
                                 .weight(.medium)
@@ -94,12 +92,6 @@ struct PersonalityTestView: View {
                     } else {
                         Image("radioUnselected")
                     }
-//                    if iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.selectedOption == -1 {
-//                        Image("radioUnselected")
-//                    } else {
-//                        Image("radioSelected")
-//                    }
-                    
                 }
                 .padding(.leading, 20)
                 .padding(.trailing, 20)
@@ -125,7 +117,6 @@ struct PersonalityTestView: View {
                             selectedOption = .none
                             isNavButtonActive = true
                         }
-                        //iPersonalityTextViewModel.getNextQuestion()
                     } label: {
                         Image("rightNav")
                             .padding(.horizontal, 6)
@@ -147,29 +138,6 @@ struct PersonalityTestView: View {
                     .padding(.trailing, 40)
                     
                     NavigationLink("", destination: PersonalityTestDoneView(iPersonalityTextViewModel: iPersonalityTextViewModel), isActive: $isNavButtonActive)
-//                    {
-//                        Image("rightNav")
-//                            .padding(.horizontal, 6)
-//                            .padding(.top, 7)
-//                            .padding(.bottom, 5)
-//                            .frame(width: 48, alignment: .center)
-//                            .background(
-//                                LinearGradient(
-//                                    stops: [
-//                                        Gradient.Stop(color: Color(red: 0.38, green: 0.81, blue: 0.83), location: 0.00),
-//                                        Gradient.Stop(color: Color(red: 0, green: 0.74, blue: 0.84), location: 1.00),
-//                                    ],
-//                                    startPoint: UnitPoint(x: -0.14, y: -0.29),
-//                                    endPoint: UnitPoint(x: -0.14, y: 1)
-//                                )
-//                            )
-//                            .cornerRadius(24)
-//                    }
-//                    .onTapGesture {
-//                        iPersonalityTextViewModel.optionSelected(id: selectedOption.rawValue)
-//                        selectedOption = .none
-//                    }
-//                    .padding(.trailing, 40)
                 }
             } else {
                 HStack {
@@ -208,9 +176,6 @@ struct PersonalityTestView: View {
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-//        .onAppear{
-//            iPersonalityTextViewModel = IPersonalityTestViewModel()
-//        }
     }
 }
 
