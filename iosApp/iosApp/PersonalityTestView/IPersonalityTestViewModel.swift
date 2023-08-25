@@ -13,6 +13,7 @@ class IPersonalityTestViewModel: ObservableObject {
     private let personalityTestViewModel: PersonalityTestViewModel?
     
     @Published var personalityTestViewModelQuestionAnswer = PersonalityQuestionAnswer(questionId: -1, questionTitle: "", selectedOption: -1, options: [])
+    @Published var matchesData = [MatchesDetailsDataModelItem]()
     @Published var selectedOption: Bool = false
     @Published var personalityTypes: String = ""
     @Published var personalityTypesDesc: String = ""
@@ -33,6 +34,19 @@ class IPersonalityTestViewModel: ObservableObject {
                         self.selectedOption = false
                     } else {
                         self.selectedOption = true
+                    }
+                }
+            }
+        )
+    }
+    
+    func onStartObervingMatchesData(){
+        personalityTestViewModel?.getMatchesDataState.subscribe(
+            onCollect: { state in
+                if let state = state {
+                    //print(state)
+                    if let matchesList = state as? [MatchesDetailsDataModelItem] {
+                        self.matchesData = matchesList
                     }
                 }
             }

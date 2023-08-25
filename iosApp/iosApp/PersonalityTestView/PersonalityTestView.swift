@@ -28,7 +28,7 @@ struct PersonalityTestView: View {
                 .padding(.top, 50)
             
             // Heading/H4/Bold
-            Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.questionTitle)
+            Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.questionTitle.capitalized)
                 .font(.system(size: 24, weight: .bold, design: .default))
 //              .font(
 //                Font.custom("Roboto", size: 24)
@@ -46,7 +46,7 @@ struct PersonalityTestView: View {
                 selectedOption = .zero
             } label: {
                 HStack {
-                    Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.options.first?.title ??  "")
+                    Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.options.first?.title.capitalized ??  "")
                       .font(
                         Font.custom("Roboto", size: 16)
                           .weight(.medium)
@@ -79,7 +79,7 @@ struct PersonalityTestView: View {
                 selectedOption = .first
             } label: {
                 HStack {
-                    Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.options.first?.title ??  "")
+                    Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.options[1].title.capitalized)
                     //Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.options[1].title)
                         .font(
                             Font.custom("Roboto", size: 16)
