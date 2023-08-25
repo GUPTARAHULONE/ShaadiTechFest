@@ -60,15 +60,17 @@ struct MyMatches: View {
 extension MyMatches {
     func profileCard(data:  MatchesDetailsDataModelItem) -> some View {
         ZStack(alignment: .leading) {
-            AsyncImage(url: URL(string: "")) { image in
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: .infinity, height: 380)
+            GeometryReader { geometry in
+                AsyncImage(url: URL(string: data.image_url)) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: geometry.size.width, height: 380)
+                }
+                placeholder: {
+                    Color.red
+                }
             }
-        placeholder: {
-            Color.red
-        }
             
             VStack(alignment: .leading, spacing:0) {
                 
@@ -76,18 +78,13 @@ extension MyMatches {
                     Spacer()
                     ZStack {
                         Rectangle()
-                            .fill(LinearGradient(
-                                stops: [
-                                    Gradient.Stop(color: Color(red: 0.26, green: 0.73, blue: 0.73), location: 0.00),
-                                    Gradient.Stop(color: Color(red: 0.45, green: 0.77, blue: 0.49), location: 1.00),
-                                ],
-                                startPoint: UnitPoint(x: 0, y: 1),
-                                endPoint: UnitPoint(x: 1, y: 1)
-                            ))
+                            .fill(
+                                getChipColor(data: data)
+                            )
                             .frame(width: 100, height: 30)
                             .cornerRadius(10, corners: [.bottomLeft])
                         
-                        Text("Architect")
+                        Text(data.personality)
                             .font(.system(size: 14, weight: .medium, design: .default))
                             .kerning(0.4)
                             .foregroundColor(.white)
@@ -149,6 +146,37 @@ extension MyMatches {
         .frame(height: 380)
         .padding(.leading, 30)
         .padding(.trailing, 30)
+    }
+    
+    private func getChipColor(data: MatchesDetailsDataModelItem) -> some ShapeStyle {
+        if data.personality_color == "Green" {
+            return LinearGradient(
+                stops: [
+                    Gradient.Stop(color: Color(red: 0.26, green: 0.73, blue: 0.73), location: 0.00),
+                    Gradient.Stop(color: Color(red: 0.45, green: 0.77, blue: 0.49), location: 1.00),
+                ],
+                startPoint: UnitPoint(x: 0, y: 1),
+                endPoint: UnitPoint(x: 1, y: 1)
+            )
+        } else if data.personality_color == "Yellow" {
+            return LinearGradient(
+                stops: [
+                    Gradient.Stop(color: Color(red: 1, green: 0.56, blue: 0.16), location: 0.00),
+                    Gradient.Stop(color: Color(red: 1, green: 0.77, blue: 0.16), location: 1.00),
+                ],
+                startPoint: UnitPoint(x: 0.13, y: 0.79),
+                endPoint: UnitPoint(x: 1.38, y: 0.77)
+            )
+        } else {
+            return LinearGradient(
+                stops: [
+                    Gradient.Stop(color: Color(red: 1, green: 0.35, blue: 0.38), location: 0.00),
+                    Gradient.Stop(color: Color(red: 0.98, green: 0.22, blue: 0.38), location: 1.00),
+                ],
+                startPoint: UnitPoint(x: 0, y: 1),
+                endPoint: UnitPoint(x: 1, y: 1)
+            )
+        }
     }
 }
 

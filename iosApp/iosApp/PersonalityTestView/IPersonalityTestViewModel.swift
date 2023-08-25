@@ -17,6 +17,7 @@ class IPersonalityTestViewModel: ObservableObject {
     @Published var selectedOption: Bool = false
     @Published var personalityTypes: String = ""
     @Published var personalityTypesDesc: String = ""
+    @Published var progressAmount = 0.0
     
     init() {
         personalityTestViewModel = PersonalityTestViewModel()
@@ -28,8 +29,8 @@ class IPersonalityTestViewModel: ObservableObject {
         personalityTestViewModel?.getQuesState.subscribe(
             onCollect: { state in
                 if let state = state {
-                    //print(state)
                     self.personalityTestViewModelQuestionAnswer = state
+                    self.progressAmount = Double(state.questionId) + 1
                     if state.selectedOption == -1 {
                         self.selectedOption = false
                     } else {

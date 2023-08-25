@@ -13,8 +13,8 @@ struct PersonalityTestView: View {
     @ObservedObject var iPersonalityTextViewModel =  IPersonalityTestViewModel()
     
     enum SelectedOption: Int {
-        case zero = 0
-        case first  =  1
+        case first = 1
+        case second  =  2
         case none = -1
     }
     @State var selectedOption = SelectedOption.none
@@ -41,7 +41,7 @@ struct PersonalityTestView: View {
             }
             
             Button {
-                selectedOption = .zero
+                selectedOption = .first
             } label: {
                 HStack {
                     Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.options.first?.title.capitalized ??  "")
@@ -54,7 +54,7 @@ struct PersonalityTestView: View {
                     
                     Spacer()
                     
-                    if selectedOption == .zero {
+                    if selectedOption == .first {
                         Image("radioSelected")
                     } else {
                         Image("radioUnselected")
@@ -74,7 +74,7 @@ struct PersonalityTestView: View {
             
             
             Button {
-                selectedOption = .first
+                selectedOption = .second
             } label: {
                 HStack {
                     Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.options[1].title.capitalized)
@@ -87,7 +87,7 @@ struct PersonalityTestView: View {
                     
                     Spacer()
                     
-                    if selectedOption == .first {
+                    if selectedOption == .second {
                         Image("radioSelected")
                     } else {
                         Image("radioUnselected")
@@ -106,69 +106,78 @@ struct PersonalityTestView: View {
             
             Spacer()
             
-            if iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.questionId == 14 {
-                HStack {
-                    Spacer()
-                    
-                    
-                    Button {
-                        if selectedOption != .none {
-                            iPersonalityTextViewModel.optionSelected(id: selectedOption.rawValue)
-                            selectedOption = .none
-                            isNavButtonActive = true
-                        }
-                    } label: {
-                        Image("rightNav")
-                            .padding(.horizontal, 6)
-                            .padding(.top, 7)
-                            .padding(.bottom, 5)
-                            .frame(width: 48, alignment: .center)
-                            .background(
-                                LinearGradient(
-                                    stops: [
-                                        Gradient.Stop(color: Color(red: 0.38, green: 0.81, blue: 0.83), location: 0.00),
-                                        Gradient.Stop(color: Color(red: 0, green: 0.74, blue: 0.84), location: 1.00),
-                                    ],
-                                    startPoint: UnitPoint(x: -0.14, y: -0.29),
-                                    endPoint: UnitPoint(x: -0.14, y: 1)
+            ZStack {
+                ProgressView(value: iPersonalityTextViewModel.progressAmount, total: 15)
+                    .padding(.leading, 90)
+                    .padding(.trailing, 90)
+                    .tint(.green)
+                
+                if iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.questionId == 14 {
+                    HStack {
+                        Spacer()
+                        
+                        
+                        Button {
+                            if selectedOption != .none {
+                                iPersonalityTextViewModel.optionSelected(id: selectedOption.rawValue)
+                                selectedOption = .none
+                                isNavButtonActive = true
+                            }
+                        } label: {
+                            Image("rightNav")
+                                .padding(.horizontal, 6)
+                                .padding(.top, 7)
+                                .padding(.bottom, 5)
+                                .frame(width: 48, alignment: .center)
+                                .background(
+                                    LinearGradient(
+                                        stops: [
+                                            Gradient.Stop(color: Color(red: 0.38, green: 0.81, blue: 0.83), location: 0.00),
+                                            Gradient.Stop(color: Color(red: 0, green: 0.74, blue: 0.84), location: 1.00),
+                                        ],
+                                        startPoint: UnitPoint(x: -0.14, y: -0.29),
+                                        endPoint: UnitPoint(x: -0.14, y: 1)
+                                    )
                                 )
-                            )
-                            .cornerRadius(24)
-                    }
-                    .padding(.trailing, 40)
-                    
-                    NavigationLink("", destination: PersonalityTestDoneView(iPersonalityTextViewModel: iPersonalityTextViewModel), isActive: $isNavButtonActive)
-                }
-            } else {
-                HStack {
-                    Spacer()
-                    Button {
-                        if selectedOption != .none {
-                            iPersonalityTextViewModel.optionSelected(id: selectedOption.rawValue)
-                            selectedOption = .none
-                            iPersonalityTextViewModel.getNextQuestion()
+                                .cornerRadius(24)
                         }
-                    } label: {
-                        Image("rightNav")
-                            .padding(.horizontal, 6)
-                            .padding(.top, 7)
-                            .padding(.bottom, 5)
-                            .frame(width: 48, alignment: .center)
-                            .background(
-                                LinearGradient(
-                                    stops: [
-                                        Gradient.Stop(color: Color(red: 0.38, green: 0.81, blue: 0.83), location: 0.00),
-                                        Gradient.Stop(color: Color(red: 0, green: 0.74, blue: 0.84), location: 1.00),
-                                    ],
-                                    startPoint: UnitPoint(x: -0.14, y: -0.29),
-                                    endPoint: UnitPoint(x: -0.14, y: 1)
-                                )
-                            )
-                            .cornerRadius(24)
+                        .padding(.trailing, 20)
+                        
+                        NavigationLink("", destination: PersonalityTestDoneView(iPersonalityTextViewModel: iPersonalityTextViewModel), isActive: $isNavButtonActive)
                     }
-                    .padding(.trailing, 40)
+                } else {
+                    HStack {
+                        Spacer()
+                        Button {
+                            if selectedOption != .none {
+                                iPersonalityTextViewModel.optionSelected(id: selectedOption.rawValue)
+                                selectedOption = .none
+                                iPersonalityTextViewModel.getNextQuestion()
+                            }
+                        } label: {
+                            Image("rightNav")
+                                .padding(.horizontal, 6)
+                                .padding(.top, 7)
+                                .padding(.bottom, 5)
+                                .frame(width: 48, alignment: .center)
+                                .background(
+                                    LinearGradient(
+                                        stops: [
+                                            Gradient.Stop(color: Color(red: 0.38, green: 0.81, blue: 0.83), location: 0.00),
+                                            Gradient.Stop(color: Color(red: 0, green: 0.74, blue: 0.84), location: 1.00),
+                                        ],
+                                        startPoint: UnitPoint(x: -0.14, y: -0.29),
+                                        endPoint: UnitPoint(x: -0.14, y: 1)
+                                    )
+                                )
+                                .cornerRadius(24)
+                        }
+                        .padding(.trailing, 20)
+                    }
                 }
             }
+            
+            
             
             Spacer()
                 .frame(height: 30)

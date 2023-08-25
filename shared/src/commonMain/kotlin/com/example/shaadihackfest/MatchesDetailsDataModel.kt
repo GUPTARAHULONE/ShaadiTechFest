@@ -19,5 +19,6 @@ data class MatchesDetailsDataModelItem(
     val mother_tongue: String = "",
     val city: String = "",
     val state: String = "",
-    val personality: String = ""
+    val personality: String = "",
+    val personality_color: String = ""
 )
