@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
 
                     LaunchedEffect(true) {
                         scope.launch(Dispatchers.IO) {
-                            val data = InfoApi().getApiCall2("ISFP")
+                            val data = InfoApi().getMatchesData("ISFP")
                             text1.value = try {
                                 // Greeting().getAllLaunches()[0].missionName
                                 data.get(0).name

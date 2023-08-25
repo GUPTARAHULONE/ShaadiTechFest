@@ -14,17 +14,17 @@ class PersonalityTestViewModel {
     private val questionCounter = MutableStateFlow(-1)
     private val api = InfoApi()
 
-    val getState = _state.toCommonStateFlow()
+    val getMatchesDataState = _state.toCommonStateFlow()
     private val _quesState = MutableStateFlow(PersonalityQuestionAnswer())
     val getQuesState = _quesState.toCommonStateFlow()
 
     init {
-        callApi()
+        // getMatchesData()
     }
 
-    private fun callApi() {
+    private fun getMatchesData(score: String) {
         viewModelScope.launch {
-            val data = api.getApiCall2("ISFP")
+            val data = api.getMatchesData(score)
             _state.value = data
         }
     }
@@ -585,6 +585,7 @@ class PersonalityTestViewModel {
         )
 
         listData.add(personalityTypesDesc[score] ?: "")
+        getMatchesData(score)
         return listData
     }
 

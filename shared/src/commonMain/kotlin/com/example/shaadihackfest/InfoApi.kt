@@ -37,7 +37,7 @@ class InfoApi {
         return response.bodyAsText()
     }
 
-    suspend fun getApiCall2(score: String): List<MatchesDetailsDataModelItem> {
+    suspend fun getMatchesData(score: String): List<MatchesDetailsDataModelItem> {
 //        val response =
 //            client.get("https://topical-vital-satyr.ngrok-free.app/api/matches?type=$score")
 //        println(response)
