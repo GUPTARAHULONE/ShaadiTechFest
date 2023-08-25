@@ -4,34 +4,33 @@ import com.example.shaadihackfest.utils.toCommonStateFlow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 
 class PersonalityTestViewModel {
 
     private val viewModelScope = CoroutineScope(Dispatchers.Main)
-    private val _state = MutableStateFlow(InfoState("Loading.."))
+
+//    private val _state = MutableStateFlow(InfoState("Loading.."))
     private val questionCounter = MutableStateFlow(-1)
     private val api = InfoApi()
 
-    val getState = _state.toCommonStateFlow()
+//    val getState = _state.toCommonStateFlow()
     private val _quesState = MutableStateFlow(PersonalityQuestionAnswer())
     val getQuesState = _quesState.toCommonStateFlow()
 
     init {
-        callApi()
+//        callApi()
     }
 
-    private fun callApi() {
-        viewModelScope.launch {
-            val data = api.getApiCall()
-            _state.update {
-                it.copy(
-                    data = data
-                )
-            }
-        }
-    }
+//    private fun callApi() {
+//        viewModelScope.launch {
+//            val data = api.getApiCall()
+//            _state.update {
+//                it.copy(
+//                    data = data
+//                )
+//            }
+//        }
+//    }
 
     fun submitPersonalityTestAnswer(dataList: List<PersonalityTestAnswer>) {
         println(dataList)
@@ -546,15 +545,14 @@ class PersonalityTestViewModel {
         return map[data]
     }
 
-    private fun callPostApi() {
-        viewModelScope.launch {
-            val data = api.getInfoApiCall()
-            _state.update {
-                it.copy(
-                    data = data
-                )
-            }
-        }
-    }
-
+//    private fun callPostApi() {
+//        viewModelScope.launch {
+//            val data = api.getInfoApiCall()
+//            _state.update {
+//                it.copy(
+//                    data = data
+//                )
+//            }
+//        }
+//    }
 }
