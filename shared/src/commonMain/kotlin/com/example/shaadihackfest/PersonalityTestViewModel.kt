@@ -291,91 +291,91 @@ class PersonalityTestViewModel {
 
         for (list in answerList) {
             if (list.questionId == 0) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     e += 2
                 } else {
-                    i + 2
+                    i +=2
                 }
             } else if (list.questionId == 1) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     e += 2
                 } else {
                     i += 1
                 }
             } else if (list.questionId == 2) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     e += 2
                 } else {
                     i += 1
                 }
             } else if (list.questionId == 3) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     e += 1
                 } else {
                     i += 2
                 }
             } else if (list.questionId == 4) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     s += 2
                 } else {
                     n += 2
                 }
             } else if (list.questionId == 5) {
-                if (list.questionId == 2) {
+                if (list.answerId == 2) {
                     s += 1
                 } else {
                     n += 1
                 }
             } else if (list.questionId == 6) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     s += 1
                 } else {
                     n += 2
                 }
             } else if (list.questionId == 7) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     s += 1
                 } else {
                     n += 2
                 }
             } else if (list.questionId == 8) {
-                if (list.questionId == 2) {
+                if (list.answerId == 2) {
                     t += 2
                 } else {
                     f += 1
                 }
             } else if (list.questionId == 9) {
-                if (list.questionId == 2) {
+                if (list.answerId == 2) {
                     t += 2
                 } else {
                     f += 1
                 }
             } else if (list.questionId == 10) {
-                if (list.questionId == 2) {
+                if (list.answerId == 2) {
                     t += 2
                 } else {
                     f += 2
                 }
             } else if (list.questionId == 11) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     j += 2
                 } else {
                     p += 2
                 }
             } else if (list.questionId == 12) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     j += 1
                 } else {
                     p += 1
                 }
             } else if (list.questionId == 13) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     j += 1
                 } else {
                     p += 2
                 }
             } else if (list.questionId == 14) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     j += 2
                 } else {
                     p += 1

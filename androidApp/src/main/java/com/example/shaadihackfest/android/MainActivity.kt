@@ -15,6 +15,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.shaadihackfest.InfoApi
+import com.example.shaadihackfest.PersonalityTestViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -36,14 +37,17 @@ class MainActivity : ComponentActivity() {
 
                     LaunchedEffect(true) {
                         scope.launch(Dispatchers.IO) {
-                            val data = InfoApi().getMatchesData("ISFP")
-                            text1.value = try {
-                                // Greeting().getAllLaunches()[0].missionName
-                                data.get(0).name
-                            } catch (e: Exception) {
-                                e.localizedMessage ?: "error"
-                            }
-                            Log.d("text123", data.toString())
+                            //val data = InfoApi().getMatchesData("ISFP")
+//                            text1.value = try {
+//                                // Greeting().getAllLaunches()[0].missionName
+//                                data.get(0).name
+//                            } catch (e: Exception) {
+//                                e.localizedMessage ?: "error"
+//                            }
+
+                            val viewmodel = PersonalityTestViewModel()
+                          val data =   viewmodel.getScore()
+                            Log.d("text123", data)
                         }
                     }
                     GreetingView(text1.value)
