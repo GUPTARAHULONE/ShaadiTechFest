@@ -14,6 +14,8 @@ class IPersonalityTestViewModel: ObservableObject {
     
     @Published var personalityTestViewModelQuestionAnswer = PersonalityQuestionAnswer(questionId: -1, questionTitle: "", selectedOption: -1, options: [])
     @Published var selectedOption: Bool = false
+    @Published var personalityTypes: String = ""
+    @Published var personalityTypesDesc: String = ""
     
     init() {
         personalityTestViewModel = PersonalityTestViewModel()
@@ -43,6 +45,15 @@ class IPersonalityTestViewModel: ObservableObject {
     
     func getNextQuestion() {
         personalityTestViewModel?.getQuestionAnswer()
+    }
+    
+    func getPersonalityType(){
+        let data = personalityTestViewModel?.getPersonalityType()
+        
+        if let data = data {
+            personalityTypes = data[0]
+            personalityTypesDesc = data[1]
+        }
     }
     
     

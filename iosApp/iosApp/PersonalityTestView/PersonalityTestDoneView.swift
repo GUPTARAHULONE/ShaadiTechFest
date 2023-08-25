@@ -10,8 +10,8 @@ import SwiftUI
 
 struct PersonalityTestDoneView: View {
     
-    let iPersonalityTextViewModel: IPersonalityTestViewModel
-    
+    @ObservedObject var iPersonalityTextViewModel =  IPersonalityTestViewModel()
+
     var body: some View {
         VStack(alignment: .leading) {
             
@@ -60,7 +60,7 @@ struct PersonalityTestDoneView: View {
                         .fill(Color.white)
                         .frame(width: 7, height: 7)
                         
-                    Text("Architect")
+                    Text(iPersonalityTextViewModel.personalityTypes)
                         .font(.system(size: 20, weight: .medium, design: .default))
                       .multilineTextAlignment(.center)
                       .foregroundColor(.black)
@@ -72,7 +72,7 @@ struct PersonalityTestDoneView: View {
             }
             .padding(.bottom, 5)
             
-            Text("You are a unique blend of qualities that make you, you! You possess a captivating mix of strengths, passions, and quirks that shape your one-of-a-kind personality. Embrace your individuality and let your personality shine in everything you do.")
+            Text(iPersonalityTextViewModel.personalityTypesDesc)
               .font(
                 Font.custom("SF Pro Text", size: 14)
                   .italic()
@@ -109,6 +109,9 @@ struct PersonalityTestDoneView: View {
         .navigationBarBackButtonHidden(true)
         .padding(.leading, 35)
         .padding(.trailing, 35)
+        .onAppear{
+            iPersonalityTextViewModel.getPersonalityType()
+        }
     }
 }
 
