@@ -8,6 +8,7 @@
 
 import SwiftUI
 import shared
+import ShimmerView
 
 struct MyMatches: View {
     @ObservedObject var iPersonalityTextViewModel =  IPersonalityTestViewModel()
@@ -68,7 +69,10 @@ extension MyMatches {
                         .frame(width: geometry.size.width, height: 380)
                 }
                 placeholder: {
-                    Color.red
+                    ShimmerScope(isAnimating: .constant(true)) {
+                        ShimmerElement(width: geometry.size.width, height: 380)
+                            .cornerRadius(4)
+                    }
                 }
             }
             

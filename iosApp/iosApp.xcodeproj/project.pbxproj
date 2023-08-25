@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		E709D6DE2A98DD81008A903F /* PersonalityTestDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709D6DD2A98DD81008A903F /* PersonalityTestDoneView.swift */; };
 		E709D6E02A98E88D008A903F /* MyMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709D6DF2A98E88D008A903F /* MyMatches.swift */; };
 		E709D6E22A98F204008A903F /* RapidFirePersonalityTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709D6E12A98F204008A903F /* RapidFirePersonalityTestView.swift */; };
+		E709D6E52A995B44008A903F /* ShimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = E709D6E42A995B44008A903F /* ShimmerView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E709D6E52A995B44008A903F /* ShimmerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +136,9 @@
 			dependencies = (
 			);
 			name = iosApp;
+			packageProductDependencies = (
+				E709D6E42A995B44008A903F /* ShimmerView */,
+			);
 			productName = iosApp;
 			productReference = 7555FF7B242A565900829871 /* iosApp.app */;
 			productType = "com.apple.product-type.application";
@@ -162,6 +167,9 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
+			packageReferences = (
+				E709D6E32A995B44008A903F /* XCRemoteSwiftPackageReference "ShimmerView" */,
+			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -420,6 +428,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E709D6E32A995B44008A903F /* XCRemoteSwiftPackageReference "ShimmerView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mercari/ShimmerView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E709D6E42A995B44008A903F /* ShimmerView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E709D6E32A995B44008A903F /* XCRemoteSwiftPackageReference "ShimmerView" */;
+			productName = ShimmerView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }
