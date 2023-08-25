@@ -414,21 +414,147 @@ class PersonalityTestViewModel {
         return answerString
     }
 
-//    private fun getMappedData(): Map<String, List<String>> {
-//        val map = mutableMapOf<String, List<String>>()
-//
-//        map["ESTJ"] = listOf("ESFJ", "ISFJ", "ISTJ", "INFP", "ISTP", "INTP", "ENTJ", "ENFP", "ESFP")
-//        map["ISTJ"] = listOf(ESTJ, ESFJ, ISFJ, INFP, ENFP,INTJ, ISTP, ISTJ)
-//        map["ESFJ"] = listOf(ISTJ, ISFJ, ESTJ, ENTP, INTP,ENFJ, INFJ, ISTP)
-//        map["ISFJ"] = listOf(ESTJ, ISTJ, ESFJ, ENTP,INFJ, ENFJ, ESTP, ISTP, INTP)
-//        map["ESFP"] = listOf(ISFP, ISTP, INTJ,ESTJ, ESTP, INFJ, ENFJ, ESFJ, ISFJ, ENTP, ENFP, INFP)
-//        map["ISFP"] = listOf(ESFP, ESTP, ISTP, INTJ,INTP, ENTJ, ISTJ, INFJ, INFP)
-//        map["ESTP"] = listOf(ISFP, ISTP, INFJ, ENFJ,ISFJ, ESFJ, ENTP, INFP, ESFP)
-//        map["ISTP"] = listOf(ESTP, ISFP, INFJ, ENFJ, INTJ, INTP,ESFP, ESTJ, ISTJ, ESFJ, ISFJ, ENFP, INFP, ENTP)
-//        map["ENTJ"] = listOf(ENTP, INTP, ESTJ, INFP, ENFJ,ENFP, ISFP, ESFJ, ISTP, INTJ)
-//        map["INTJ"] = listOf(ENFP, INFP, ESFP, ISFP, ISTP,ISTJ, INTP, ENFJ, ENTP, ENTJ, INFJ, INTJ)
-//        map["ENFJ"] = listOf(INFJ, INTJ, INFP, ENTJ, ESTP, ISTP,INTP, ENTP, ENFJ, ESFP, ESFJ, ISFJ, ENFP)
-//        map["INFJ"] = listOf(INFP, INTP, ENFJ, ISTP, ESTP, ENTP, ENFP,INTJ, ESFJ, ISFJ, INFJ)
-//
-//    }
+    private fun getMappedData(data: String): List<String>? {
+        val map = mutableMapOf<String, List<String>>()
+
+        map["ESTJ"] = listOf("ESFJ", "ISFJ", "ISTJ", "INFP", "ISTP", "INTP", "ENTJ", "ENFP", "ESFP")
+        map["ISTJ"] = listOf("ESTJ", "ESFJ", "ISFJ", "INFP", "ENFP", "INTJ", "ISTP", "ISTJ")
+        map["ESFJ"] = listOf("ISTJ", "ISFJ", "ESTJ", "ENTP", "INTP", "ENFJ", "INFJ", "ISTP")
+        map["ISFJ"] = listOf("ESTJ", "ISTJ", "ESFJ", "ENTP", "INFJ", "ENFJ", "ESTP", "ISTP", "INTP")
+        map["ESFP"] = listOf(
+            "ISFP",
+            "ISTP",
+            "INTJ",
+            "ESTJ",
+            "ESTP",
+            "INFJ",
+            "ENFJ",
+            "ESFJ",
+            "ISFJ",
+            "ENTP",
+            "ENFP",
+            "INFP"
+        )
+        map["ISFP"] = listOf("ESFP", "ESTP", "ISTP", "INTJ", "INTP", "ENTJ", "ISTJ", "INFJ", "INFP")
+        map["ESTP"] = listOf("ISFP", "ISTP", "INFJ", "ENFJ", "ISFJ", "ESFJ", "ENTP", "INFP", "ESFP")
+        map["ISTP"] = listOf(
+            "ESTP",
+            "ISFP",
+            "INFJ",
+            "ENFJ",
+            "INTJ",
+            "INTP",
+            "ESFP",
+            "ESTJ",
+            "ISTJ",
+            "ESFJ",
+            "ISFJ",
+            "ENFP",
+            "INFP",
+            "ENTP"
+        )
+        map["ENTJ"] =
+            listOf("ENTP", "INTP", "ESTJ", "INFP", "ENFJ", "ENFP", "ISFP", "ESFJ", "ISTP", "INTJ")
+        map["INTJ"] = listOf(
+            "ENFP",
+            "INFP",
+            "ESFP",
+            "ISFP",
+            "ISTP",
+            "ISTJ",
+            "INTP",
+            "ENFJ",
+            "ENTP",
+            "ENTJ",
+            "INFJ",
+            "INTJ"
+        )
+        map["ENFJ"] = listOf(
+            "INFJ",
+            "INTJ",
+            "INFP",
+            "ENTJ",
+            "ESTP",
+            "ISTP",
+            "INTP",
+            "ENTP",
+            "ENFJ",
+            "ESFP",
+            "ESFJ",
+            "ISFJ",
+            "ENFP"
+        )
+        map["INFJ"] = listOf(
+            "INFP",
+            "INTP",
+            "ENFJ",
+            "ISTP",
+            "ESTP",
+            "ENTP",
+            "ENFP",
+            "INTJ",
+            "ESFJ",
+            "ISFJ",
+            "INFJ"
+        )
+        map["ENFP"] =
+            listOf("INTJ", "ISTJ", "INFP", "INFJ", "ENTP", "ENFJ", "ESFP", "ENFJ", "INTP", "ENFP")
+        map["INFP"] = listOf(
+            "ESTJ",
+            "INTJ",
+            "ISTJ",
+            "ENTJ",
+            "ENFP",
+            "INFJ",
+            "INTP",
+            "ENTP",
+            "ENFJ",
+            "ISFP",
+            "ISTP",
+            "INFP",
+            "ESFP"
+        )
+        map["ENTP"] = listOf(
+            "INTP",
+            "ISFJ",
+            "ENTJ",
+            "INFJ",
+            "INFP",
+            "ENFP",
+            "INTJ",
+            "ESFJ",
+            "ISTP",
+            "ESTP",
+            "ENTP",
+            "ENFJ"
+        )
+        map["INTP"] = listOf(
+            "INFJ",
+            "INFP",
+            "ENTP",
+            "INTJ",
+            "ISTP",
+            "ESFJ",
+            "ESTJ",
+            "ENTJ",
+            "ISFP",
+            "ENFP",
+            "ENFJ",
+            "ISFJ"
+        )
+
+        return map[data]
+    }
+
+    private fun callPostApi() {
+        viewModelScope.launch {
+            val data = api.getInfoApiCall()
+            _state.update {
+                it.copy(
+                    data = data
+                )
+            }
+        }
+    }
+
 }
