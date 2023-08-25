@@ -19,7 +19,7 @@ class PersonalityTestViewModel {
     val getQuesState = _quesState.toCommonStateFlow()
 
     init {
-        callApi()
+       // callApi()
     }
 
     private fun callApi() {
