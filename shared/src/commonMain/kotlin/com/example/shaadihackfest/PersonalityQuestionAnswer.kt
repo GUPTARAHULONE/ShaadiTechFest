@@ -2,7 +2,7 @@ package com.example.shaadihackfest
 
 data class PersonalityQuestionAnswer(
     val questionId: Int = 0,
-    val questionTitle: Int = 0,
+    val questionTitle: String = "",
     val options: List<OptionList> = listOf()
 )
 

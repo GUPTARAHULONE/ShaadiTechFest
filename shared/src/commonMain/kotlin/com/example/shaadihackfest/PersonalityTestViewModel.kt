@@ -37,19 +37,232 @@ class PersonalityTestViewModel {
         println(dataList)
     }
 
-    private var dummyDataList = List(15) {
+//    private var dummyDataList = List(15) {
+//        PersonalityQuestionAnswer(
+//            questionId = it + 1, // Assuming unique question IDs starting from 1
+//            questionTitle = "", // Assuming unique question titles starting from 101
+//            options = List(2) { // Assuming 1 to 4 options for each question
+//                OptionList(
+//                    id = (1..100).random(), // Assuming option IDs from 1 to 100
+//                    title = "Option ${(1..10).random()}", // Assuming option titles like "Option 1", "Option 2", etc.
+//                    selectedOption = (0..2).random() // Assuming selected option IDs from 0 to 2
+//                )
+//            }
+//        )
+//    }
+
+    private var dummyDataList = listOf<PersonalityQuestionAnswer>(
         PersonalityQuestionAnswer(
-            questionId = it + 1, // Assuming unique question IDs starting from 1
-            questionTitle = it + 101, // Assuming unique question titles starting from 101
-            options = List((1..4).random()) { // Assuming 1 to 4 options for each question
+            questionId = 0,
+            questionTitle = "ARE YOU USUALLY",
+            options = listOf(
                 OptionList(
-                    id = (1..100).random(), // Assuming option IDs from 1 to 100
-                    title = "Option ${(1..10).random()}", // Assuming option titles like "Option 1", "Option 2", etc.
-                    selectedOption = (0..2).random() // Assuming selected option IDs from 0 to 2
+                    id = 0,
+                    title = "A “GOOD MIXER” WITH GROUPS OF PEOPLE, OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "RATHER QUIET AND RESERVED?"
                 )
-            }
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 1,
+            questionTitle = "AMONG YOUR FRIENDS ARE YOU",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "FULL OF NEWS ABOUT EVERYBODY, OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "ONE OF THE LAST TO HEAR WHAT IS GOING ON?"
+                )
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 2,
+            questionTitle = "DO YOU TEND TO HAVE",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "BROAD FRIENDSHIPS WITH MANY DIFFERENT PEOPLE, OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "DEEP FRIENDSHIP WITH VERY FEW PEOPLE?"
+                )
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 3,
+            questionTitle = "WHEN YOU ARE WITH THE GROUP OF PEOPLE, WOULD YOU USUALLY RATHER",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "JOIN IN THE TALK OF THE GROUP OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "STAND BACK AND LISTEN FIRST?"
+                )
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 4,
+            questionTitle = "IF YOU WERE A TEACHER, WOULD YOU RATHER TEACH",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "FACTS-BASED COURSES, OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "COURSES INVOLVING OPINION OR THEORY?"
+                )
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 5,
+            questionTitle = "IN DOING SOMETHING THAT MANY OTHER PEOPLE DO, WOULD YOU RATHER",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "INVENT A WAY OF YOUR OWN, OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "DO IT IN THE ACCEPTED WAY?"
+                )
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 6,
+            questionTitle = "DO YOU ADMIRE MORE THE PEOPLE WHO ARE",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "NORMAL-ACTING TO NEVER MAKE THEMSELVES THE CENTER OF ATTENTION, OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "TOO ORIGINAL AND INDIVIDUAL TO CARE WHETHER THEY ARE THE CENTER OF ATTENTION OR NOT "
+                )
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 7,
+            questionTitle = "DO YOU USUALLY GET ALONG BETTER WITH",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "REALISTIC PEOPLE, OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "IMAGINATIVE PEOPLE?"
+                )
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 8,
+            questionTitle = "DO YOU MORE OFTEN LET",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "YOUR HEART RULE YOUR HEAD. OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "YOUR HEAD RULE YOUR HEART?"
+                )
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 9,
+            questionTitle = "IS IT A HIGHER COMPLIMENT TO BE CALLED",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "A PERSON OF REAL FEELING, OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "A CONSISTENTLY REASONABLE PERSON?"
+                )
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 10,
+            questionTitle = "DO YOU USUALLY",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "VALUE EMOTION MORE THAN LOGIC, OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "VALUE LOGIC MORE THAN FEELINGS?"
+                )
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 11,
+            questionTitle = "WHEN YOU GO SOMEWHERE FOR THE DAY, WOULD YOU RATHER",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "PLAN WHAT YOU WILL DO AND WHEN, OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "JUST GO!!"
+                )
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 12,
+            questionTitle = "WHEN IT IS SETTLED WELL IN ADVANCE THAT YOU WILL DO A CERTAIN THING AT A CERTAIN TIME,DO YOU FIND IT",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "NICE TO BE ABLE TO PLAN ACCORDINGLY, OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "A LITTLE UNPLEASANT TO BE TIED DOWN?"
+                )
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 13,
+            questionTitle = "WHEN YOU HAVE A SPECIAL JOB TO DO, DO YOU LIKE TO",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "ORGANIZE IT CAREFULLY BEFORE YOU START, OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "FIND OUT WHAT IS NECESSARY AS YOU GO ALONG?"
+                )
+            )
+        ),
+        PersonalityQuestionAnswer(
+            questionId = 14,
+            questionTitle = "DO YOU PREFER TO",
+            options = listOf(
+                OptionList(
+                    id = 0,
+                    title = "ARRANGE PICNICS, PARTIES ETC, WELL IN ADVANCE, OR"
+                ),
+                OptionList(
+                    id = 1,
+                    title = "BE FREE TO DO WHATEVER TO LOOKS LIKE FUN WHEN THE TIME COMES?"
+                )
+            )
         )
-    }
+    )
     val updatedDummyDataList = dummyDataList.toMutableList()
     private val answerList = mutableListOf<PersonalityTestAnswer>()
 
@@ -68,10 +281,136 @@ class PersonalityTestViewModel {
         answerList.add(PersonalityTestAnswer(questionCounter.value, answerId))
     }
 
-//    private fun getScore(): String {
-//        val answerString =""
-//
-//        if(answerList[])
-//
-//    }
+    private fun getScore(): String {
+        var answerString = ""
+
+        var e = 0
+        var i = 0
+        var s = 0
+        var n = 0
+        var t = 0
+        var f = 0
+        var j = 0
+        var p = 0
+
+        for (list in answerList) {
+            if (list.questionId == 0) {
+                if (list.questionId == 1) {
+                    e += 2
+                } else {
+                    i + 2
+                }
+            } else if (list.questionId == 1) {
+                if (list.questionId == 1) {
+                    e += 2
+                } else {
+                    i += 1
+                }
+            } else if (list.questionId == 2) {
+                if (list.questionId == 1) {
+                    e += 2
+                } else {
+                    i += 1
+                }
+            } else if (list.questionId == 3) {
+                if (list.questionId == 1) {
+                    e += 1
+                } else {
+                    i += 2
+                }
+            } else if (list.questionId == 4) {
+                if (list.questionId == 1) {
+                    s += 2
+                } else {
+                    n += 2
+                }
+            } else if (list.questionId == 5) {
+                if (list.questionId == 2) {
+                    s += 1
+                } else {
+                    n += 1
+                }
+            } else if (list.questionId == 6) {
+                if (list.questionId == 1) {
+                    s += 1
+                } else {
+                    n += 2
+                }
+            } else if (list.questionId == 7) {
+                if (list.questionId == 1) {
+                    s += 1
+                } else {
+                    n += 2
+                }
+            } else if (list.questionId == 8) {
+                if (list.questionId == 2) {
+                    t += 2
+                } else {
+                    f += 1
+                }
+            } else if (list.questionId == 9) {
+                if (list.questionId == 2) {
+                    t += 2
+                } else {
+                    f += 1
+                }
+            } else if (list.questionId == 10) {
+                if (list.questionId == 2) {
+                    t += 2
+                } else {
+                    f += 2
+                }
+            } else if (list.questionId == 11) {
+                if (list.questionId == 1) {
+                    j += 2
+                } else {
+                    p += 2
+                }
+            } else if (list.questionId == 12) {
+                if (list.questionId == 1) {
+                    j += 1
+                } else {
+                    p += 1
+                }
+            } else if (list.questionId == 13) {
+                if (list.questionId == 1) {
+                    j += 1
+                } else {
+                    p += 2
+                }
+            } else if (list.questionId == 14) {
+                if (list.questionId == 1) {
+                    j += 2
+                } else {
+                    p += 1
+                }
+            }
+        }
+
+        answerString += if (e > i) {
+            "E"
+        } else {
+            "I"
+        }
+
+        answerString += if (s > n) {
+            "S"
+        } else {
+            "N"
+        }
+
+        answerString += if (t > f) {
+            "T"
+        } else {
+            "F"
+        }
+
+        answerString += if (j > p) {
+            "J"
+        } else {
+            "P"
+        }
+
+        return answerString
+    }
 }
