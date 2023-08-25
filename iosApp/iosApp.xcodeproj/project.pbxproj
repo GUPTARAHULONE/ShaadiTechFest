@@ -14,6 +14,9 @@
 		E709D6D92A98CA11008A903F /* IPersonalityTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709D6D72A98CA11008A903F /* IPersonalityTestViewModel.swift */; };
 		E709D6DA2A98CA11008A903F /* PersonalityTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709D6D82A98CA11008A903F /* PersonalityTestView.swift */; };
 		E709D6DC2A98CA38008A903F /* DRPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709D6DB2A98CA38008A903F /* DRPage.swift */; };
+		E709D6DE2A98DD81008A903F /* PersonalityTestDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709D6DD2A98DD81008A903F /* PersonalityTestDoneView.swift */; };
+		E709D6E02A98E88D008A903F /* MyMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709D6DF2A98E88D008A903F /* MyMatches.swift */; };
+		E709D6E22A98F204008A903F /* RapidFirePersonalityTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E709D6E12A98F204008A903F /* RapidFirePersonalityTestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +42,9 @@
 		E709D6D72A98CA11008A903F /* IPersonalityTestViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPersonalityTestViewModel.swift; sourceTree = "<group>"; };
 		E709D6D82A98CA11008A903F /* PersonalityTestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalityTestView.swift; sourceTree = "<group>"; };
 		E709D6DB2A98CA38008A903F /* DRPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DRPage.swift; sourceTree = "<group>"; };
+		E709D6DD2A98DD81008A903F /* PersonalityTestDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityTestDoneView.swift; sourceTree = "<group>"; };
+		E709D6DF2A98E88D008A903F /* MyMatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMatches.swift; sourceTree = "<group>"; };
+		E709D6E12A98F204008A903F /* RapidFirePersonalityTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RapidFirePersonalityTestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,8 @@
 				E709D6DB2A98CA38008A903F /* DRPage.swift */,
 				E709D6D62A98CA11008A903F /* PersonalityTestView */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
+				E709D6DF2A98E88D008A903F /* MyMatches.swift */,
+				E709D6E12A98F204008A903F /* RapidFirePersonalityTestView.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -103,6 +111,7 @@
 			children = (
 				E709D6D72A98CA11008A903F /* IPersonalityTestViewModel.swift */,
 				E709D6D82A98CA11008A903F /* PersonalityTestView.swift */,
+				E709D6DD2A98DD81008A903F /* PersonalityTestDoneView.swift */,
 			);
 			path = PersonalityTestView;
 			sourceTree = "<group>";
@@ -199,8 +208,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E709D6E22A98F204008A903F /* RapidFirePersonalityTestView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				E709D6DE2A98DD81008A903F /* PersonalityTestDoneView.swift in Sources */,
 				E709D6DA2A98CA11008A903F /* PersonalityTestView.swift in Sources */,
+				E709D6E02A98E88D008A903F /* MyMatches.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				E709D6D92A98CA11008A903F /* IPersonalityTestViewModel.swift in Sources */,
 				E709D6DC2A98CA38008A903F /* DRPage.swift in Sources */,
