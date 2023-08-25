@@ -50,15 +50,15 @@ class PersonalityTestViewModel {
     private var dummyDataList = listOf(
         PersonalityQuestionAnswer(
             questionId = 0,
-            questionTitle = "ARE YOU USUALLY",
+            questionTitle = "AMONG GROUPS OF PEOPLE, DO YOU USUALLY",
             options = listOf(
                 OptionList(
                     id = 0,
-                    title = "A “GOOD MIXER” WITH GROUPS OF PEOPLE, OR"
+                    title = "MIX WELL AMONG EVERYONE"
                 ),
                 OptionList(
                     id = 1,
-                    title = "RATHER QUIET AND RESERVED?"
+                    title = "BE QUIET AND RESERVED?"
                 )
             )
         ),
@@ -110,11 +110,11 @@ class PersonalityTestViewModel {
             options = listOf(
                 OptionList(
                     id = 0,
-                    title = "FACTS-BASED COURSES, OR"
+                    title = "A FACTS-BASED OR LOGICAL SUBJECT - LIKE MATHS, OR"
                 ),
                 OptionList(
                     id = 1,
-                    title = "COURSES INVOLVING OPINION OR THEORY?"
+                    title = "AN OPEN-ENDED SUBJECT INVOLVING OPINIONS - LIKE PHILOSOPHY"
                 )
             )
         ),
@@ -134,15 +134,15 @@ class PersonalityTestViewModel {
         ),
         PersonalityQuestionAnswer(
             questionId = 6,
-            questionTitle = "DO YOU ADMIRE MORE THE PEOPLE WHO ARE",
+            questionTitle = "WHICH KIND OF PEOPLE DO YOU ADMIRE MORE",
             options = listOf(
                 OptionList(
                     id = 0,
-                    title = "NORMAL-ACTING TO NEVER MAKE THEMSELVES THE CENTER OF ATTENTION, OR"
+                    title = "SOMEONE WHO IS CASUAL AND RELAXED, GOES WITH THE FLOW"
                 ),
                 OptionList(
                     id = 1,
-                    title = "TOO ORIGINAL AND INDIVIDUAL TO CARE WHETHER THEY ARE THE CENTER OF ATTENTION OR NOT "
+                    title = "SOMEONE WHO IS ORIGINAL AND INDIVIDUAL"
                 )
             )
         ),
@@ -180,11 +180,11 @@ class PersonalityTestViewModel {
             options = listOf(
                 OptionList(
                     id = 0,
-                    title = "A PERSON OF REAL FEELING, OR"
+                    title = "A SENSITIVE PERSON"
                 ),
                 OptionList(
                     id = 1,
-                    title = "A CONSISTENTLY REASONABLE PERSON?"
+                    title = "A REASONABLE PERSON?"
                 )
             )
         ),
@@ -212,7 +212,7 @@ class PersonalityTestViewModel {
                 ),
                 OptionList(
                     id = 1,
-                    title = "JUST GO!!"
+                    title = "BE SPONTANEOUS AND GO UNPLANNED"
                 )
             )
         ),
@@ -254,7 +254,7 @@ class PersonalityTestViewModel {
                 ),
                 OptionList(
                     id = 1,
-                    title = "BE FREE TO DO WHATEVER TO LOOKS LIKE FUN WHEN THE TIME COMES?"
+                    title = "DO THESE THINGS WHEN THE TIME COMES?"
                 )
             )
         )
