@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class InfoViewmodel {
+class PersonalityTestViewModel {
 
     private val viewModelScope = CoroutineScope(Dispatchers.Main)
     private val _state = MutableStateFlow(InfoState("Loading.."))
@@ -28,5 +28,9 @@ class InfoViewmodel {
                 )
             }
         }
+    }
+
+    fun submitPersonalityTestAnswer(dataList: List<PersonalityTestAnswer>) {
+        println(dataList)
     }
 }
