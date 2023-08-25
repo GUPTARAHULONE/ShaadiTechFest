@@ -271,13 +271,13 @@ class PersonalityTestViewModel {
         return dummyDataList[questionCounter.value]
     }
 
-    fun optionSelected(answerId: Int) {
+    fun optionSelected(answerId: String) {
 //       val item =  updatedDummyDataList[questionCounter.value ]
 //        val updatedOption = item.copy()
 //        updatedDummyDataList[questionCounter.value ] = updatedDummyDataList[questionCounter.value ].copy(
 //            options = Op
 //        )
-        answerList.add(PersonalityTestAnswer(questionCounter.value, answerId))
+        answerList.add(PersonalityTestAnswer(questionCounter.value, answerId.toInt()))
     }
 
     private fun getScore(): String {
