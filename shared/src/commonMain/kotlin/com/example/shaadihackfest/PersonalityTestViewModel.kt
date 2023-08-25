@@ -4,14 +4,13 @@ import com.example.shaadihackfest.utils.toCommonStateFlow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class PersonalityTestViewModel {
 
     private val viewModelScope = CoroutineScope(Dispatchers.Main)
 
-    private val _state = MutableStateFlow(InfoState("Loading.."))
+    private val _state = MutableStateFlow(listOf(MatchesDetailsDataModelItem()))
     private val questionCounter = MutableStateFlow(-1)
     private val api = InfoApi()
 
@@ -26,11 +25,7 @@ class PersonalityTestViewModel {
     private fun callApi() {
         viewModelScope.launch {
             val data = api.getApiCall2("ISFP")
-            _state.update {
-                it.copy(
-                    data = data
-                )
-            }
+            _state.value = data
         }
     }
 

@@ -1,4 +1,3 @@
-
 package com.example.shaadihackfest.android
 
 import android.annotation.SuppressLint
@@ -12,11 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.shaadihackfest.Greeting
 import com.example.shaadihackfest.InfoApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -39,13 +36,14 @@ class MainActivity : ComponentActivity() {
 
                     LaunchedEffect(true) {
                         scope.launch(Dispatchers.IO) {
+                            val data = InfoApi().getApiCall2("ISFP")
                             text1.value = try {
-                               // Greeting().getAllLaunches()[0].missionName
-                                InfoApi().getApiCall2("ISFP")
+                                // Greeting().getAllLaunches()[0].missionName
+                                data.get(0).name
                             } catch (e: Exception) {
                                 e.localizedMessage ?: "error"
                             }
-                            Log.d("text123", text1.value)
+                            Log.d("text123", data.toString())
                         }
                     }
                     GreetingView(text1.value)

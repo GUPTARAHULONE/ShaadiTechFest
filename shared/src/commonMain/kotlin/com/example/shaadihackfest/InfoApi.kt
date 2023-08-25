@@ -25,13 +25,19 @@ class InfoApi {
         }
     }
 
+//    val client = HttpClient {
+//        install(JsonFeature) {
+//            serializer = KotlinxSerializer()
+//        }
+//    }
+
     suspend fun getApiCall(): String {
         val response = client.get("https://ktor.io/docs/")
         println(response)
         return response.bodyAsText()
     }
 
-    suspend fun getApiCall2(score: String): String {
+    suspend fun getApiCall2(score: String): List<MatchesDetailsDataModelItem> {
 //        val response =
 //            client.get("https://topical-vital-satyr.ngrok-free.app/api/matches?type=$score")
 //        println(response)
@@ -47,7 +53,7 @@ class InfoApi {
             parameter("type", score)
         }
 
-        println("response= $response")
+        println("response= " + response.body())
         return response.body()
     }
 
