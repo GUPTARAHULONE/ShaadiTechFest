@@ -12,6 +12,14 @@ struct PersonalityTestView: View {
     
     @ObservedObject var iPersonalityTextViewModel =  IPersonalityTestViewModel()
     
+    enum SelectedOption: Int {
+        case zero = 0
+        case first  =  1
+        case none = -1
+    }
+    @State var selectedOption = SelectedOption.none
+    @State var isNavButtonActive = false
+    
     var body: some View {
         VStack(alignment: .center) {
             
@@ -34,7 +42,8 @@ struct PersonalityTestView: View {
               //.frame(width: 302, alignment: .topLeading)
             
             Button {
-                iPersonalityTextViewModel.optionSelected(id: 0)
+                //iPersonalityTextViewModel.optionSelected(id: 0)
+                selectedOption = .zero
             } label: {
                 HStack {
                     Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.options.first?.title ??  "")
@@ -46,10 +55,10 @@ struct PersonalityTestView: View {
                     
                     Spacer()
                     
-                    if iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.selectedOption == -1 {
-                        Image("radioUnselected")
-                    } else {
+                    if selectedOption == .zero {
                         Image("radioSelected")
+                    } else {
+                        Image("radioUnselected")
                     }
                     
                 }
@@ -66,7 +75,8 @@ struct PersonalityTestView: View {
             
             
             Button {
-                iPersonalityTextViewModel.optionSelected(id: 1)
+                //iPersonalityTextViewModel.optionSelected(id: 1)
+                selectedOption = .first
             } label: {
                 HStack {
                     Text(iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.options.first?.title ??  "")
@@ -79,11 +89,16 @@ struct PersonalityTestView: View {
                     
                     Spacer()
                     
-                    if iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.selectedOption == -1 {
-                        Image("radioUnselected")
-                    } else {
+                    if selectedOption == .first {
                         Image("radioSelected")
+                    } else {
+                        Image("radioUnselected")
                     }
+//                    if iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.selectedOption == -1 {
+//                        Image("radioUnselected")
+//                    } else {
+//                        Image("radioSelected")
+//                    }
                     
                 }
                 .padding(.leading, 20)
@@ -102,7 +117,16 @@ struct PersonalityTestView: View {
             if iPersonalityTextViewModel.personalityTestViewModelQuestionAnswer.questionId == 14 {
                 HStack {
                     Spacer()
-                    NavigationLink(destination: PersonalityTestDoneView(iPersonalityTextViewModel: iPersonalityTextViewModel)) {
+                    
+                    
+                    Button {
+                        if selectedOption != .none {
+                            iPersonalityTextViewModel.optionSelected(id: selectedOption.rawValue)
+                            selectedOption = .none
+                            isNavButtonActive = true
+                        }
+                        //iPersonalityTextViewModel.getNextQuestion()
+                    } label: {
                         Image("rightNav")
                             .padding(.horizontal, 6)
                             .padding(.top, 7)
@@ -121,12 +145,41 @@ struct PersonalityTestView: View {
                             .cornerRadius(24)
                     }
                     .padding(.trailing, 40)
+                    
+                    NavigationLink("", destination: PersonalityTestDoneView(iPersonalityTextViewModel: iPersonalityTextViewModel), isActive: $isNavButtonActive)
+//                    {
+//                        Image("rightNav")
+//                            .padding(.horizontal, 6)
+//                            .padding(.top, 7)
+//                            .padding(.bottom, 5)
+//                            .frame(width: 48, alignment: .center)
+//                            .background(
+//                                LinearGradient(
+//                                    stops: [
+//                                        Gradient.Stop(color: Color(red: 0.38, green: 0.81, blue: 0.83), location: 0.00),
+//                                        Gradient.Stop(color: Color(red: 0, green: 0.74, blue: 0.84), location: 1.00),
+//                                    ],
+//                                    startPoint: UnitPoint(x: -0.14, y: -0.29),
+//                                    endPoint: UnitPoint(x: -0.14, y: 1)
+//                                )
+//                            )
+//                            .cornerRadius(24)
+//                    }
+//                    .onTapGesture {
+//                        iPersonalityTextViewModel.optionSelected(id: selectedOption.rawValue)
+//                        selectedOption = .none
+//                    }
+//                    .padding(.trailing, 40)
                 }
             } else {
                 HStack {
                     Spacer()
                     Button {
-                        iPersonalityTextViewModel.getNextQuestion()
+                        if selectedOption != .none {
+                            iPersonalityTextViewModel.optionSelected(id: selectedOption.rawValue)
+                            selectedOption = .none
+                            iPersonalityTextViewModel.getNextQuestion()
+                        }
                     } label: {
                         Image("rightNav")
                             .padding(.horizontal, 6)
