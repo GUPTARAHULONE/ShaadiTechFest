@@ -46,8 +46,8 @@ class MainActivity : ComponentActivity() {
 //                            }
 
                             val viewmodel = PersonalityTestViewModel()
-                          val data =   viewmodel.getScore()
-                            Log.d("text123", data)
+                          //val data =   viewmodel.getScore()
+                            //Log.d("text123", data)
                         }
                     }
                     GreetingView(text1.value)

@@ -49,7 +49,7 @@ class InfoApi {
 //        return response.bodyAsText()
 
         val response = client.get {
-            url("https://personality-matching-hackfest2023.us-east-1.staging.shaadi.internal/api/matches")
+            url("http://personality-matching-hackfest2023.us-east-1.staging.shaadi.internal/api/matches")
 
             parameter("type", score)
         }
