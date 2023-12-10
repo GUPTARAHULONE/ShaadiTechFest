@@ -4,32 +4,28 @@ import com.example.shaadihackfest.utils.toCommonStateFlow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class PersonalityTestViewModel {
 
     private val viewModelScope = CoroutineScope(Dispatchers.Main)
-    private val _state = MutableStateFlow(InfoState("Loading.."))
+
+    private val _state = MutableStateFlow(listOf(MatchesDetailsDataModelItem()))
     private val questionCounter = MutableStateFlow(-1)
     private val api = InfoApi()
 
-    val getState = _state.toCommonStateFlow()
+    val getMatchesDataState = _state.toCommonStateFlow()
     private val _quesState = MutableStateFlow(PersonalityQuestionAnswer())
     val getQuesState = _quesState.toCommonStateFlow()
 
     init {
-        callApi()
+        // getMatchesData()
     }
 
-    private fun callApi() {
+    private fun getMatchesData(score: String) {
         viewModelScope.launch {
-            val data = api.getApiCall()
-            _state.update {
-                it.copy(
-                    data = data
-                )
-            }
+            val data = api.getMatchesData(score)
+            _state.value = data
         }
     }
 
@@ -54,15 +50,15 @@ class PersonalityTestViewModel {
     private var dummyDataList = listOf(
         PersonalityQuestionAnswer(
             questionId = 0,
-            questionTitle = "ARE YOU USUALLY",
+            questionTitle = "AMONG GROUPS OF PEOPLE, DO YOU USUALLY",
             options = listOf(
                 OptionList(
                     id = 0,
-                    title = "A “GOOD MIXER” WITH GROUPS OF PEOPLE, OR"
+                    title = "MIX WELL AMONG EVERYONE"
                 ),
                 OptionList(
                     id = 1,
-                    title = "RATHER QUIET AND RESERVED?"
+                    title = "BE QUIET AND RESERVED?"
                 )
             )
         ),
@@ -114,11 +110,11 @@ class PersonalityTestViewModel {
             options = listOf(
                 OptionList(
                     id = 0,
-                    title = "FACTS-BASED COURSES, OR"
+                    title = "A FACTS-BASED OR LOGICAL SUBJECT - LIKE MATHS, OR"
                 ),
                 OptionList(
                     id = 1,
-                    title = "COURSES INVOLVING OPINION OR THEORY?"
+                    title = "AN OPEN-ENDED SUBJECT INVOLVING OPINIONS - LIKE PHILOSOPHY"
                 )
             )
         ),
@@ -138,15 +134,15 @@ class PersonalityTestViewModel {
         ),
         PersonalityQuestionAnswer(
             questionId = 6,
-            questionTitle = "DO YOU ADMIRE MORE THE PEOPLE WHO ARE",
+            questionTitle = "WHICH KIND OF PEOPLE DO YOU ADMIRE MORE",
             options = listOf(
                 OptionList(
                     id = 0,
-                    title = "NORMAL-ACTING TO NEVER MAKE THEMSELVES THE CENTER OF ATTENTION, OR"
+                    title = "SOMEONE WHO IS CASUAL AND RELAXED, GOES WITH THE FLOW"
                 ),
                 OptionList(
                     id = 1,
-                    title = "TOO ORIGINAL AND INDIVIDUAL TO CARE WHETHER THEY ARE THE CENTER OF ATTENTION OR NOT "
+                    title = "SOMEONE WHO IS ORIGINAL AND INDIVIDUAL"
                 )
             )
         ),
@@ -184,11 +180,11 @@ class PersonalityTestViewModel {
             options = listOf(
                 OptionList(
                     id = 0,
-                    title = "A PERSON OF REAL FEELING, OR"
+                    title = "A SENSITIVE PERSON"
                 ),
                 OptionList(
                     id = 1,
-                    title = "A CONSISTENTLY REASONABLE PERSON?"
+                    title = "A REASONABLE PERSON?"
                 )
             )
         ),
@@ -216,7 +212,7 @@ class PersonalityTestViewModel {
                 ),
                 OptionList(
                     id = 1,
-                    title = "JUST GO!!"
+                    title = "BE SPONTANEOUS AND GO UNPLANNED"
                 )
             )
         ),
@@ -258,7 +254,7 @@ class PersonalityTestViewModel {
                 ),
                 OptionList(
                     id = 1,
-                    title = "BE FREE TO DO WHATEVER TO LOOKS LIKE FUN WHEN THE TIME COMES?"
+                    title = "DO THESE THINGS WHEN THE TIME COMES?"
                 )
             )
         )
@@ -272,13 +268,13 @@ class PersonalityTestViewModel {
         return dummyDataList[questionCounter.value]
     }
 
-    fun optionSelected(answerId: Int) {
+    fun optionSelected(answerId: String) {
 //       val item =  updatedDummyDataList[questionCounter.value ]
 //        val updatedOption = item.copy()
 //        updatedDummyDataList[questionCounter.value ] = updatedDummyDataList[questionCounter.value ].copy(
 //            options = Op
 //        )
-        answerList.add(PersonalityTestAnswer(questionCounter.value, answerId))
+        answerList.add(PersonalityTestAnswer(questionCounter.value, answerId.toInt()))
     }
 
     private fun getScore(): String {
@@ -295,91 +291,91 @@ class PersonalityTestViewModel {
 
         for (list in answerList) {
             if (list.questionId == 0) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     e += 2
                 } else {
-                    i + 2
+                    i +=2
                 }
             } else if (list.questionId == 1) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     e += 2
                 } else {
                     i += 1
                 }
             } else if (list.questionId == 2) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     e += 2
                 } else {
                     i += 1
                 }
             } else if (list.questionId == 3) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     e += 1
                 } else {
                     i += 2
                 }
             } else if (list.questionId == 4) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     s += 2
                 } else {
                     n += 2
                 }
             } else if (list.questionId == 5) {
-                if (list.questionId == 2) {
+                if (list.answerId == 2) {
                     s += 1
                 } else {
                     n += 1
                 }
             } else if (list.questionId == 6) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     s += 1
                 } else {
                     n += 2
                 }
             } else if (list.questionId == 7) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     s += 1
                 } else {
                     n += 2
                 }
             } else if (list.questionId == 8) {
-                if (list.questionId == 2) {
+                if (list.answerId == 2) {
                     t += 2
                 } else {
                     f += 1
                 }
             } else if (list.questionId == 9) {
-                if (list.questionId == 2) {
+                if (list.answerId == 2) {
                     t += 2
                 } else {
                     f += 1
                 }
             } else if (list.questionId == 10) {
-                if (list.questionId == 2) {
+                if (list.answerId == 2) {
                     t += 2
                 } else {
                     f += 2
                 }
             } else if (list.questionId == 11) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     j += 2
                 } else {
                     p += 2
                 }
             } else if (list.questionId == 12) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     j += 1
                 } else {
                     p += 1
                 }
             } else if (list.questionId == 13) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     j += 1
                 } else {
                     p += 2
                 }
             } else if (list.questionId == 14) {
-                if (list.questionId == 1) {
+                if (list.answerId == 1) {
                     j += 2
                 } else {
                     p += 1
@@ -414,21 +410,193 @@ class PersonalityTestViewModel {
         return answerString
     }
 
-//    private fun getMappedData(): Map<String, List<String>> {
-//        val map = mutableMapOf<String, List<String>>()
-//
-//        map["ESTJ"] = listOf("ESFJ", "ISFJ", "ISTJ", "INFP", "ISTP", "INTP", "ENTJ", "ENFP", "ESFP")
-//        map["ISTJ"] = listOf(ESTJ, ESFJ, ISFJ, INFP, ENFP,INTJ, ISTP, ISTJ)
-//        map["ESFJ"] = listOf(ISTJ, ISFJ, ESTJ, ENTP, INTP,ENFJ, INFJ, ISTP)
-//        map["ISFJ"] = listOf(ESTJ, ISTJ, ESFJ, ENTP,INFJ, ENFJ, ESTP, ISTP, INTP)
-//        map["ESFP"] = listOf(ISFP, ISTP, INTJ,ESTJ, ESTP, INFJ, ENFJ, ESFJ, ISFJ, ENTP, ENFP, INFP)
-//        map["ISFP"] = listOf(ESFP, ESTP, ISTP, INTJ,INTP, ENTJ, ISTJ, INFJ, INFP)
-//        map["ESTP"] = listOf(ISFP, ISTP, INFJ, ENFJ,ISFJ, ESFJ, ENTP, INFP, ESFP)
-//        map["ISTP"] = listOf(ESTP, ISFP, INFJ, ENFJ, INTJ, INTP,ESFP, ESTJ, ISTJ, ESFJ, ISFJ, ENFP, INFP, ENTP)
-//        map["ENTJ"] = listOf(ENTP, INTP, ESTJ, INFP, ENFJ,ENFP, ISFP, ESFJ, ISTP, INTJ)
-//        map["INTJ"] = listOf(ENFP, INFP, ESFP, ISFP, ISTP,ISTJ, INTP, ENFJ, ENTP, ENTJ, INFJ, INTJ)
-//        map["ENFJ"] = listOf(INFJ, INTJ, INFP, ENTJ, ESTP, ISTP,INTP, ENTP, ENFJ, ESFP, ESFJ, ISFJ, ENFP)
-//        map["INFJ"] = listOf(INFP, INTP, ENFJ, ISTP, ESTP, ENTP, ENFP,INTJ, ESFJ, ISFJ, INFJ)
-//
+    private fun getMappedData(data: String): List<String>? {
+        val map = mutableMapOf<String, List<String>>()
+
+        map["ESTJ"] = listOf("ESFJ", "ISFJ", "ISTJ", "INFP", "ISTP", "INTP", "ENTJ", "ENFP", "ESFP")
+        map["ISTJ"] = listOf("ESTJ", "ESFJ", "ISFJ", "INFP", "ENFP", "INTJ", "ISTP", "ISTJ")
+        map["ESFJ"] = listOf("ISTJ", "ISFJ", "ESTJ", "ENTP", "INTP", "ENFJ", "INFJ", "ISTP")
+        map["ISFJ"] = listOf("ESTJ", "ISTJ", "ESFJ", "ENTP", "INFJ", "ENFJ", "ESTP", "ISTP", "INTP")
+        map["ESFP"] = listOf(
+            "ISFP",
+            "ISTP",
+            "INTJ",
+            "ESTJ",
+            "ESTP",
+            "INFJ",
+            "ENFJ",
+            "ESFJ",
+            "ISFJ",
+            "ENTP",
+            "ENFP",
+            "INFP"
+        )
+        map["ISFP"] = listOf("ESFP", "ESTP", "ISTP", "INTJ", "INTP", "ENTJ", "ISTJ", "INFJ", "INFP")
+        map["ESTP"] = listOf("ISFP", "ISTP", "INFJ", "ENFJ", "ISFJ", "ESFJ", "ENTP", "INFP", "ESFP")
+        map["ISTP"] = listOf(
+            "ESTP",
+            "ISFP",
+            "INFJ",
+            "ENFJ",
+            "INTJ",
+            "INTP",
+            "ESFP",
+            "ESTJ",
+            "ISTJ",
+            "ESFJ",
+            "ISFJ",
+            "ENFP",
+            "INFP",
+            "ENTP"
+        )
+        map["ENTJ"] =
+            listOf("ENTP", "INTP", "ESTJ", "INFP", "ENFJ", "ENFP", "ISFP", "ESFJ", "ISTP", "INTJ")
+        map["INTJ"] = listOf(
+            "ENFP",
+            "INFP",
+            "ESFP",
+            "ISFP",
+            "ISTP",
+            "ISTJ",
+            "INTP",
+            "ENFJ",
+            "ENTP",
+            "ENTJ",
+            "INFJ",
+            "INTJ"
+        )
+        map["ENFJ"] = listOf(
+            "INFJ",
+            "INTJ",
+            "INFP",
+            "ENTJ",
+            "ESTP",
+            "ISTP",
+            "INTP",
+            "ENTP",
+            "ENFJ",
+            "ESFP",
+            "ESFJ",
+            "ISFJ",
+            "ENFP"
+        )
+        map["INFJ"] = listOf(
+            "INFP",
+            "INTP",
+            "ENFJ",
+            "ISTP",
+            "ESTP",
+            "ENTP",
+            "ENFP",
+            "INTJ",
+            "ESFJ",
+            "ISFJ",
+            "INFJ"
+        )
+        map["ENFP"] =
+            listOf("INTJ", "ISTJ", "INFP", "INFJ", "ENTP", "ENFJ", "ESFP", "ENFJ", "INTP", "ENFP")
+        map["INFP"] = listOf(
+            "ESTJ",
+            "INTJ",
+            "ISTJ",
+            "ENTJ",
+            "ENFP",
+            "INFJ",
+            "INTP",
+            "ENTP",
+            "ENFJ",
+            "ISFP",
+            "ISTP",
+            "INFP",
+            "ESFP"
+        )
+        map["ENTP"] = listOf(
+            "INTP",
+            "ISFJ",
+            "ENTJ",
+            "INFJ",
+            "INFP",
+            "ENFP",
+            "INTJ",
+            "ESFJ",
+            "ISTP",
+            "ESTP",
+            "ENTP",
+            "ENFJ"
+        )
+        map["INTP"] = listOf(
+            "INFJ",
+            "INFP",
+            "ENTP",
+            "INTJ",
+            "ISTP",
+            "ESFJ",
+            "ESTJ",
+            "ENTJ",
+            "ISFP",
+            "ENFP",
+            "ENFJ",
+            "ISFJ"
+        )
+
+        return map[data]
+    }
+
+    fun getPersonalityType(): List<String> {
+        val score = getScore()
+        val personalityTypes = mapOf(
+            "INTJ" to "Architect",
+            "INTP" to "Logician",
+            "ENTJ" to "Commander",
+            "ENTP" to "Debater",
+            "INFJ" to "Advocate",
+            "INFP" to "Mediator",
+            "ENFJ" to "Protagonist",
+            "ENFP" to "Campaigner",
+            "ISTJ" to "Logistician",
+            "ISFJ" to "Defender",
+            "ESTJ" to "Executive",
+            "ESFJ" to "Consul",
+            "ISTP" to "Virtuoso",
+            "ISFP" to "Adventurer",
+            "ESTP" to "Entrepreneur",
+            "ESFP" to "Entertainer"
+        )
+        val listData = mutableListOf<String>()
+        listData.add(personalityTypes[score] ?: "")
+
+        val personalityTypesDesc = mapOf(
+            "INTJ" to "An Architect is a person with the Introverted, Intuitive, Thinking, and Judging personality traits. These thoughtful tacticians love perfecting the details of life, applying creativity and rationality to everything they do. Their inner world is often a private, complex one.",
+            "INTP" to "A Logician is someone with the Introverted, Intuitive, Thinking, and Prospecting personality traits. These flexible thinkers enjoy taking an unconventional approach to many aspects of life. They often seek out unlikely paths, mixing willingness to experiment with personal creativity.",
+            "ENTJ" to "A Commander is someone with the Extraverted, Intuitive, Thinking, and Judging personality traits. They are decisive people who love momentum and accomplishment. They gather information to construct their creative visions but rarely hesitate for long before acting on them.",
+            "ENTP" to "A Debater is a person with the Extraverted, Intuitive, Thinking, and Prospecting personality traits. They tend to be bold and creative, deconstructing and rebuilding ideas with great mental agility. They pursue their goals vigorously despite any resistance they might encounter.",
+            "INFJ" to "An Advocate is someone with the Introverted, Intuitive, Feeling, and Judging personality traits. They tend to approach life with deep thoughtfulness and imagination. Their inner vision, personal values, and a quiet, principled version of humanism guide them in all things.",
+            "INFP" to "A Mediator is someone who possesses the Introverted, Intuitive, Feeling, and Prospecting personality traits. These rare personality types tend to be quiet, open-minded, and imaginative, and they apply a caring and creative approach to everything they do.",
+            "ENFJ" to "A Protagonist is a person with the Extraverted, Intuitive, Feeling, and Judging personality traits. These warm, forthright types love helping others, and they tend to have strong ideas and values. They back their perspective with the creative energy to achieve their goals.",
+            "ENFP" to "A Campaigner is someone with the Extraverted, Intuitive, Feeling, and Prospecting personality traits. These people tend to embrace big ideas and actions that reflect their sense of hope and goodwill toward others. Their vibrant energy can flow in many directions.",
+            "ISTJ" to "A Logistician is someone with the Introverted, Observant, Thinking, and Judging personality traits. These people tend to be reserved yet willful, with a rational outlook on life. They compose their actions carefully and carry them out with methodical purpose.",
+            "ISFJ" to "A Defender is someone with the Introverted, Observant, Feeling, and Judging personality traits. These people tend to be warm and unassuming in their own steady way. They’re efficient and responsible, giving careful attention to practical details in their daily lives.",
+            "ESTJ" to "An Executive is someone with the Extraverted, Observant, Thinking, and Judging personality traits. They possess great fortitude, emphatically following their own sensible judgment. They often serve as a stabilizing force among others, able to offer solid direction amid adversity.",
+            "ESFJ" to "A Consul is a person with the Extraverted, Observant, Feeling, and Judging personality traits. They are attentive and people-focused, and they enjoy taking part in their social community. Their achievements are guided by decisive values, and they willingly offer guidance to others.",
+            "ISTP" to "A Virtuoso is someone with the Introverted, Observant, Thinking, and Prospecting personality traits. They tend to have an individualistic mindset, pursuing goals without needing much external connection. They engage in life with inquisitiveness and personal skill, varying their approach as needed.",
+            "ISFP" to "An Adventurer is a person with the Introverted, Observant, Feeling, and Prospecting personality traits. They tend to have open minds, approaching life, new experiences, and people with grounded warmth. Their ability to stay in the moment helps them uncover exciting potentials.",
+            "ESTP" to "An Entrepreneur is someone with the Extraverted, Observant, Thinking, and Prospecting personality traits. They tend to be energetic and action-oriented, deftly navigating whatever is in front of them. They love uncovering life’s opportunities, whether socializing with others or in more personal pursuits.",
+            "ESFP" to "An Entertainer is a person with the Extraverted, Observant, Feeling, and Prospecting personality traits. These people love vibrant experiences, engaging in life eagerly and taking pleasure in discovering the unknown. They can be very social, often encouraging others into shared activities."
+        )
+
+        listData.add(personalityTypesDesc[score] ?: "")
+        getMatchesData(score)
+        return listData
+    }
+
+//    private fun callPostApi() {
+//        viewModelScope.launch {
+//            val data = api.getInfoApiCall()
+//            _state.update {
+//                it.copy(
+//                    data = data
+//                )
+//            }
+//        }
 //    }
 }

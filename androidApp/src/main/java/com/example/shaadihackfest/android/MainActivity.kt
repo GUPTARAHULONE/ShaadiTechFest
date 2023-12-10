@@ -1,4 +1,3 @@
-
 package com.example.shaadihackfest.android
 
 import android.annotation.SuppressLint
@@ -12,11 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.shaadihackfest.Greeting
+import com.example.shaadihackfest.InfoApi
+import com.example.shaadihackfest.PersonalityTestViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -35,14 +34,20 @@ class MainActivity : ComponentActivity() {
                     val text1 = remember { mutableStateOf("Loading") }
 
                     val text = MutableStateFlow<String>("abc")
+
                     LaunchedEffect(true) {
                         scope.launch(Dispatchers.IO) {
-                            text1.value = try {
-                                Greeting().getApiCall()
-                            } catch (e: Exception) {
-                                e.localizedMessage ?: "error"
-                            }
-//                            Log.d("text", text.value)
+                            //val data = InfoApi().getMatchesData("ISFP")
+//                            text1.value = try {
+//                                // Greeting().getAllLaunches()[0].missionName
+//                                data.get(0).name
+//                            } catch (e: Exception) {
+//                                e.localizedMessage ?: "error"
+//                            }
+
+                            val viewmodel = PersonalityTestViewModel()
+                          //val data =   viewmodel.getScore()
+                            //Log.d("text123", data)
                         }
                     }
                     GreetingView(text1.value)
